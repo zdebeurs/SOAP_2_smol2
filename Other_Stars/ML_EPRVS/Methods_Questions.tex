@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+\renewcommand\abstractname{\textbf{ABSTRACT}}
+%----------Packages----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsrefs}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+\usepackage[all]{xy}
+\usepackage[mathcal]{eucal}
+\usepackage{verbatim}  %%includes comment environment
+\usepackage{fullpage}  %%smaller margins
+\usepackage{times}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage{cite}
+\usepackage{setspace}
+%----------Commands----------
+%%penalizes orphans
+\clubpenalty=9999
+\widowpenalty=9999
+\providecommand{\abs}[1]{\lvert #1 \rvert}
+\providecommand{\norm}[1]{\lVert #1 \rVert}
+\usepackage{ amssymb }
+\providecommand{\x}{\times}
+\usepackage{sectsty}
+\usepackage{lipsum}
+\usepackage{titlesec}
+\titleformat*{\section}{\normalsize\bfseries\scshape}
+\titleformat*{\subsection}{\normalsize}
+\titleformat*{\subsubsection}{\normalsize\filcenter}
+\titleformat*{\paragraph}{\normalsize\bfseries\filcenter}
+\titleformat*{\subparagraph}{\normalsize\bfseries\filcenter}
+\usepackage{indentfirst}
+\providecommand{\ar}{\rightarrow}
+\providecommand{\arr}{\longrightarrow}
+%\hyphenpenalty  10000
+%\exhyphenpenalty 10000
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,right=1in,left=1in,headheight=200pt]{geometry}
+\pagestyle{fancy}
+\lhead{$<$ML$\_$EPRVs$>$}
+%\chead{V1 (April. 9, 2021)}
+\rhead{$<$CCF Linear Regression$>$}
+\cfoot{\thepage}
+\titlespacing*{\section}{0pt}{0.75\baselineskip}{0.1\baselineskip}
+\usepackage[labelfont=sc]{caption}
+\captionsetup{labelfont=bf}
+%\doublespacing
+
+\begin{document}
+\section{Description of the Method}
+\subsection{Please provide a short (1-2 paragraph) summary of the general idea of the method.  What does it do and how?  If the method has been previously published, please provide a link to that work in addition to answering this and the following questions.}
+
+The CCF Linear Regression method makes use of machine learning to model variations in the CCF that are introduced by stellar activity. This method was inspired by successful use of neural networks to mitigate stellar activity for solar data (de Beurs et al. 2020), but was significantly simplified to be able to apply it to a smaller set of observations from extrasolar stars. The simplified machine learning model predicts the difference between a Gaussian fit to the CCF and the true velocity shift. This predicted difference describes the stellar activity signal and can then be subtracted from the input RVs to give corrected RVs.
+
+This method requires CCFs for each exposure and best fit RVs.  The CCFs are first shifted by the best-fit RVs so there are no translational difference between the different CCFs.  This allows the model to instead focus purely on shape variations.  The model is fed differential CCFs, or the residuals by subtracting a the median CCF from all CCFs.  These differential CCFs are normalized by the standard deviation of each point in the CCF across all observations.  This normalization serves to scale the variations so they are roughly equal in magnitude.
+
+In order to reduce the complexity of the model, only 4-6 inputs from locations across the residual CCFs are modeled using a linear regression model. The simplest model\footnote{We implemented several other models as described in sections 1.1.1-1.1.4.} is given by:
+\begin{equation}
+RV = w_1\cdot CCF_1 +  w_2\cdot CCF_2 + ...  + w_v\cdot CCF_v   \\
+\end{equation}
+where $CCF_v$ is the value of the CCF at velocity $v$ and $w_v$ is the associated weight parameter. The weights $w_v$ are fit for using a custom-built Least Squares Fitting algorithm where the RVs are weighted by their error estimates.
+
+This CCF Linear Regression method does not use timing information.  Though it benefits from more observations, the cadence of these observations does not matter. 
+
+We implemented the CCF Linear Regression method in a few different ways (re-calculting our own RVs, nightly binning, adding H-alpha, adding Keplerians, etc.) as described in more detail in sections 1.1.1-1.1.4.
+
+\subsubsection{Using Provided RVs versus Using Gaussian Fitted RVs}
+
+We used the provided RVs (CBC RVs) for our analysis and also independently ran our model with RVs we recalculated from the CCFs. Specifically, we performed a Gaussian fit to the CCFs using \texttt{mpyfit} to compute the RVs. We found that this often yielded a lower RMS scatter than the provided RVs. We ran all of our models on both these Gaussian Fitted RVs and the provided RVs.
+
+
+\subsubsection{Binned versus Unbinned Observations}
+We ran all our models on both on the unbinned observations and on nightly binned observations. Nightly binning averages out the p-mode oscillations and thus makes the pattern between RVs and shape changes in the residual CCFs easier to learn for our ML models.
+
+
+\subsubsection{Adding H-Alpha as an input}
+In addition to the Residual CCF parameters, we also created another model that adds H$_\alpha$ as an input for predicting the stellar activity. In this case, the model is given by:
+\begin{equation}
+RV = w_1\cdot CCF_1 +  w_2\cdot CCF_2 + ...  w_v\cdot CCF_v  + b\cdot H_{\alpha} \\
+\end{equation}
+where $CCF_v$ is the value of the CCF at velocity $v$ and $w_v$ is the associated weight parameter, $H_{\alpha}$ is the value of the emission of $H_{\alpha}$ and $b$ is the associated weight parameter. The weights $w_v$ and $b$ are fit for using a custom-built Least Squares Fitting algorithm where the RV's are weighted by their error estimates.
+
+\subsubsection{Adding Keplerians to the model}
+For our analysis of HD26965, we also created a model that includes a Keplerian parameter such that we simultaneously fit for stellar activity signals and planet signals. In this case, the model is given by:
+\begin{equation}
+\begin{split}
+    RV = w_1\cdot CCF_1 +  w_2\cdot CCF_2 + ...  w_v\cdot CCF_v  + b\cdot H_{\alpha} + \textcolor{blue}{d\cdot Keplerian} \\
+= RV_{stellar} + \textcolor{blue}{RV_{Keplerian}}
+\end{split}
+\end{equation}
+where $CCF_v$ is the value of the CCF at velocity $v$ and $w_v$ is the associated weight parameter, $H_{\alpha}$ is the value of the emission of $H_{\alpha}$ and $b$ is the associated weight parameter, $Keplerian$ is a fitted Keplerian with $d$ as its weight parameter. The weights $w_v$, $b$, and $d$ are fit for using a custom-built Least Squares Fitting algorithm where the RV's are weighted by their error estimates.
+
+
+\subsection{What is the method sensitive to? (e.g. asymmetric line shapes, certain periodicities, etc.)} This method is primarily sensitive to changes in the line shape of the CCF (and changes in $H_{\alpha}$) introduced by stellar variability. 
+
+\subsection{Are there any known pros/cons of the method?  For instance, is there something in particular that sets this analysis apart from previous methods?}
+
+One major advantage of this method over other statistical methods like GPs is that we do not require high-cadence sampling. Specifically, we do not use timing information and only feed the residual CCFs (and $H_\alpha$) into our model. This means that although we do need a sufficient number of observations, they do not need to be taken at high-cadence. 
+
+One disadvantage of this method is that it only works on one star at a time now. Currently, we cannot take advantage of large training sets on other stars. However, in the future, we want to build up a training set of observations from HARPS-N and other spectrographs to train a neural network to work on all kinds of stars simultaneously.
+
+\subsection{What does the method output and how is this used to mitigate contributions from photospheric velocities?  If you provided RV\_A values, please state explicitly what these are.}
+
+The method outputs a prediction for the stellar activity signals (RV\_A), which can be subtracted from the RV timeseries to get cleaned RVs (RV\_C).
+
+\subsection{Other comments?}
+
+
+
+\section{Data Requirements}
+\subsection{What is the ideal data set for this method?  In considering future instrument design and observation planning, please comment specifically on properties such as the desired precision of the data, resolution, cadence of observations, total number of observations, time coverage of the complete data set, etc.}
+
+In a perfect world,, we would have a spectrograph with as high spectral resolution as possible. Ideally, the spectral resolution would be better than about 500 m/s (resolving power $R =\lambda/\Delta\lambda\approx$ 600,000). This ensures that the spectrograph's resolution is much smaller than the intrinsic thermal broadening of iron lines (about 1 km/s). In this simplified form, we ideally will have at least 80-100 nights of observations. Our method does not require high-cadence observations so the timing of these 80-100 observations is not crucial. In the future, if we want to construct a training set of many different stars, we will want hundreds to thousands of stars with at least a few observations. The stars observed should encompass a diverse range of FGK stars to ensure that our machine learning methods learn from their varying stellar activity patterns. 
+
+%\footnote{With a 600,000 resolution, the spectrograph would not contribute to the smearing out of iron lines}) 
+
+
+\subsection{Are there any absolute requirements of the data that must be satisfied in order for this method to work?  Rough estimates welcome.}
+
+For most stars, we would likely need at least 15-20 nights at minimum to be able to learn the shape change patterns introduced into the residual CCFs by stellar activity. The cadence is not important for this method to work.
+
+\subsection{Other comments?}
+
+
+
+\section{Applying the Method}
+\subsection{What adjustments were required to implement this method on \texttt{EXPRES} data?  Were there any unexpected challenges?}
+
+To implement this method on EXPRES observations, the number of inputs from locations across the residual CCFs had to be reduced. In previous implementations, we had a larger set of observations (80-600 nights) and could use more CCF locations (10-160)  without the concern of overfitting. However, since EXPRES provided between 22 to 58 nights for each star, we had to limit the number of CCF locations to 4-6. This means that less shape information is input into the model and could potentially make it more difficult to predict stellar activity signals.
+
+
+\subsection{How robust is the method to different input parameters, i.e. does running the method require a lot of tuning to be implemented optimally?}
+
+The method is primarily sensitive to the choice of locations across the residual CCFs and this requires some fine-tuning. However, with our data visualization tools, this process is fairly straightforward.
+
+\subsection{What metric does the method (or parameter tuner) use internally to decide if the method is performing better or worse?  (e.g. nightly RMS, specific likelihood function, etc.)} 
+
+Nightly RMS
+
+
+\subsection{Other comments?}
+
+
+
+\section{Reflection on the Results}
+\subsection{Did the method perform as expected?  If not, are there adjustments that could be made to the data or observing schedule to enhance the result?}
+
+The method performed about as well as expected with the exception of its performance on HD34411. For this star, the CCFs seem to experience less shape change variation from stellar activity and this likely affected our method's performance. Perhaps, granulation could be affecting this star or some other effect that we do not see reflected in CCF shape changes.
+
+Generally, having more nights of observations (of any cadence) would likely have significantly improved our method's performance.
+
+\subsection{Was the method able to run on all exposures?  If not, is there a known reason why it failed for some exposures?}
+
+Not Applicable
+
+
+\subsection{If the method is GP based, please provide the kernel used and the best-fit hyper parameters with errors.  Otherwise, just write ``Not Applicable.''}
+
+
+\subsection{Other comments?}
+
+
+\section{General Comments}
+
+\bibliography
+
+\end{document}

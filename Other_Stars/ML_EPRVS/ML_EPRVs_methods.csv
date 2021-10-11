@@ -1,0 +1,14 @@
+﻿Name,Nick name,Type,Input,Re-Calculated,Run on,Run time,Results
+CCF Linear Regression Using Provided RVs,ccf_linear_prov_rvs,CCF,CCF ,None,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCFLinearRegression_prov_rvs_cbc_rvs.csv
+CCF H-Alpha Linear Regression Using Provided RVs,ccf_h_alpha_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,None,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCF_h-alpha_LinearRegression_prov_rvs_cbc_rvs.csv
+CCF H-Alpha Keplerian Linear Regression Using Provided RVs,ccf_h_alpha_keplerian_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,None,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCF_h-alpha_keplerian_LinearRegression_prov_rvs_cbc_rvs.csv
+Binned CCF Linear Regression Using Provided RVs,binned_ccf_linear_prov_rvs,CCF,CCF ,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCFLinearRegression_prov_rvs_cbc_rvs.csv
+Binned CCF H-Alpha Linear Regression Using Provided RVs,binned_ccf_h_alpha_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCF_h-alpha_LinearRegression_prov_rvs_cbc_rvs.csv
+Binned CCF H-Alpha Keplerian Linear Regression Using Provided RVs,binned_ccf_h_alpha_keplerian_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCF_h-alpha_keplerian_LinearRegression_prov_rvs_cbc_rvs.csv
+,,,,,,,
+CCF Linear Regression Using Gaussian Fitted RVs,ccf_linear_best_fit_gauss,CCF,CCF ,RVs,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCFLinearRegression_best_fit_gauss.csv
+CCF H-Alpha Linear Regression Using Gaussian Fitted RVs,ccf_h_alpha_linear_best_fit_gauss,CCF and h-alpha,CCF and h-alpha,RVs,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCF_h-alpha_LinearRegression_best_fit_gauss.csv
+CCF H-Alpha Keplerian Linear Regression Using  Gaussian Fitted RVs,ccf_h_alpha_keplerian_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,RVs,Laptop,Seconds,unbinned/<star name>_ML_EPRVs_CCF_h-alpha_keplerian_LinearRegression_best_fit_gauss.csv
+Binned CCF Linear Regression Using Gaussian Fitted RVs,binned_ccf_linear_best_fit_gauss,CCF,CCF ,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCFLinearRegression_best_fit_gauss.csv
+Binned CCF H-Alpha Linear Regression Using Gaussian Fitted RVs,binned_ccf_h_alpha_linear_best_fit_gauss,CCF and h-alpha,CCF and h-alpha,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCF_h-alpha_LinearRegression_best_fit_gauss.csv
+Binned CCF H-Alpha Keplerian Linear Regression Using  Gaussian Fitted RVs,binned_ccf_h_alpha_keplerian_linear_prov_rvs,CCF and h-alpha,CCF and h-alpha,"CCFs, RVs",Laptop,Seconds,binned/<star name>_ML_EPRVs_CCF_h-alpha_keplerian_LinearRegression_best_fit_gauss.csv
