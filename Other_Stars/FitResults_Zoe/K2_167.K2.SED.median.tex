@@ -1,0 +1,107 @@
+\documentclass{aastex62}
+\providecommand{\bjdtdb}{\ensuremath{\rm {BJD_{TDB}}}}
+\providecommand{\feh}{\ensuremath{\left[{\rm Fe}/{\rm H}\right]}}
+\providecommand{\teff}{\ensuremath{T_{\rm eff}}}
+\providecommand{\teq}{\ensuremath{T_{\rm eq}}}
+\providecommand{\ecosw}{\ensuremath{e\cos{\omega_*}}}
+\providecommand{\esinw}{\ensuremath{e\sin{\omega_*}}}
+\providecommand{\msun}{\ensuremath{\,M_\Sun}}
+\providecommand{\rsun}{\ensuremath{\,R_\Sun}}
+\providecommand{\lsun}{\ensuremath{\,L_\Sun}}
+\providecommand{\mj}{\ensuremath{\,M_{\rm J}}}
+\providecommand{\rj}{\ensuremath{\,R_{\rm J}}}
+\providecommand{\me}{\ensuremath{\,M_{\rm E}}}
+\providecommand{\re}{\ensuremath{\,R_{\rm E}}}
+\providecommand{\fave}{\langle F \rangle}
+\providecommand{\fluxcgs}{10$^9$ erg s$^{-1}$ cm$^{-2}$}
+\usepackage{apjfonts}
+\begin{document}
+\startlongtable
+\begin{deluxetable*}{lccccc}
+\tablecaption{Median values and 68\% confidence interval for K2_167.K2.SED., created using EXOFASTv2 commit number 4359a38}
+\tablehead{\colhead{~~~Parameter} & \colhead{Units} & \multicolumn{4}{c}{Values}}
+\startdata
+\smallskip\\\multicolumn{2}{l}{Stellar Parameters:}&\smallskip\\
+~~~~$M_*$\dotfill &Mass (\msun)\dotfill &$1.327\pm0.064$\\
+~~~~$R_*$\dotfill &Radius (\rsun)\dotfill &$1.467^{+0.031}_{-0.030}$\\
+~~~~$R_{*,SED}$\dotfill &Radius$^{1}$ (\rsun)\dotfill &$1.468\pm0.017$\\
+~~~~$L_*$\dotfill &Luminosity (\lsun)\dotfill &$2.776^{+0.090}_{-0.098}$\\
+~~~~$F_{Bol}$\dotfill &Bolometric Flux (cgs)\dotfill &$0.00000001369^{+0.00000000041}_{-0.00000000047}$\\
+~~~~$\rho_*$\dotfill &Density (cgs)\dotfill &$0.592^{+0.050}_{-0.047}$\\
+~~~~$\log{g}$\dotfill &Surface gravity (cgs)\dotfill &$4.228\pm0.029$\\
+~~~~$T_{\rm eff}$\dotfill &Effective Temperature (K)\dotfill &$6148^{+63}_{-64}$\\
+~~~~$T_{\rm eff,SED}$\dotfill &Effective Temperature$^{1}$ (K)\dotfill &$6154^{+46}_{-61}$\\
+~~~~$[{\rm Fe/H}]$\dotfill &Metallicity (dex)\dotfill &$0.364^{+0.071}_{-0.073}$\\
+~~~~$[{\rm Fe/H}]_{0}$\dotfill &Initial Metallicity$^{2}$ \dotfill &$0.388^{+0.059}_{-0.064}$\\
+~~~~$Age$\dotfill &Age (Gyr)\dotfill &$2.3^{+1.3}_{-1.1}$\\
+~~~~$EEP$\dotfill &Equal Evolutionary Phase$^{3}$ \dotfill &$349^{+36}_{-17}$\\
+~~~~$A_V$\dotfill &V-band extinction (mag)\dotfill &$0.086^{+0.028}_{-0.043}$\\
+~~~~$\sigma_{SED}$\dotfill &SED photometry error scaling \dotfill &$1.20^{+0.39}_{-0.26}$\\
+~~~~$\varpi$\dotfill &Parallax (mas)\dotfill &$12.414^{+0.077}_{-0.078}$\\
+~~~~$d$\dotfill &Distance (pc)\dotfill &$80.55^{+0.51}_{-0.50}$\\
+\smallskip\\\multicolumn{2}{l}{Planetary Parameters:}&b\smallskip\\
+~~~~$P$\dotfill &Period (days)\dotfill &$9.978549\pm0.000014$\\
+~~~~$R_P$\dotfill &Radius (\rj)\dotfill &$0.1982^{+0.0077}_{-0.0064}$\\
+~~~~$M_P$\dotfill &Mass (\mj)\dotfill &$0.20\pm0.50$\\
+~~~~$T_C$\dotfill &Time of conjunction$^{4}$ (\bjdtdb)\dotfill &$2456979.9338^{+0.0019}_{-0.0020}$\\
+~~~~$T_T$\dotfill &Time of minimum projected separation$^{5}$ (\bjdtdb)\dotfill &$2456979.9339^{+0.0017}_{-0.0018}$\\
+~~~~$T_0$\dotfill &Optimal conjunction Time$^{6}$ (\bjdtdb)\dotfill &$2457678.4322^{+0.0016}_{-0.0017}$\\
+~~~~$a$\dotfill &Semi-major axis (AU)\dotfill &$0.0997\pm0.0016$\\
+~~~~$i$\dotfill &Inclination (Degrees)\dotfill &$87.93^{+1.4}_{-0.99}$\\
+~~~~$e$\dotfill &Eccentricity \dotfill &$0.45^{+0.29}_{-0.15}$\\
+~~~~$\omega_*$\dotfill &Argument of Periastron (Degrees)\dotfill &$70^{+87}_{-79}$\\
+~~~~$T_{eq}$\dotfill &Equilibrium temperature$^{7}$ (K)\dotfill &$1137\pm12$\\
+~~~~$\tau_{\rm circ}$\dotfill &Tidal circularization timescale (Gyr)\dotfill &$500^{+28000}_{-6300}$\\
+~~~~$K$\dotfill &RV semi-amplitude (m/s)\dotfill &$18^{+49}_{-47}$\\
+~~~~$R_P/R_*$\dotfill &Radius of planet in stellar radii \dotfill &$0.01386^{+0.00047}_{-0.00034}$\\
+~~~~$a/R_*$\dotfill &Semi-major axis in stellar radii \dotfill &$14.60\pm0.40$\\
+~~~~$\delta$\dotfill &Transit depth (fraction)\dotfill &$0.0001922^{+0.000013}_{-0.0000093}$\\
+~~~~$Depth$\dotfill &Flux decrement at mid transit \dotfill &$0.0001922^{+0.000013}_{-0.0000093}$\\
+~~~~$\tau$\dotfill &Ingress/egress transit duration (days)\dotfill &$0.00224^{+0.00094}_{-0.00021}$\\
+~~~~$T_{14}$\dotfill &Total transit duration (days)\dotfill &$0.1492^{+0.0035}_{-0.0036}$\\
+~~~~$T_{FWHM}$\dotfill &FWHM transit duration (days)\dotfill &$0.1466^{+0.0034}_{-0.0035}$\\
+~~~~$b$\dotfill &Transit Impact parameter \dotfill &$0.31^{+0.28}_{-0.21}$\\
+~~~~$b_S$\dotfill &Eclipse impact parameter \dotfill &$0.41^{+0.33}_{-0.28}$\\
+~~~~$\tau_S$\dotfill &Ingress/egress eclipse duration (days)\dotfill &$0.0040^{+0.0014}_{-0.0020}$\\
+~~~~$T_{S,14}$\dotfill &Total eclipse duration (days)\dotfill &$0.181^{+0.092}_{-0.054}$\\
+~~~~$T_{S,FWHM}$\dotfill &FWHM eclipse duration (days)\dotfill &$0.177^{+0.092}_{-0.053}$\\
+~~~~$\delta_{S,3.6\mu m}$\dotfill &Blackbody eclipse depth at 3.6$\mu$m$^{8}$ (ppm)\dotfill &$5.25^{+0.42}_{-0.33}$\\
+~~~~$\delta_{S,4.5\mu m}$\dotfill &Blackbody eclipse depth at 4.5$\mu$m$^{8}$ (ppm)\dotfill &$8.39^{+0.64}_{-0.49}$\\
+~~~~$\rho_P$\dotfill &Density (cgs)\dotfill &$31\pm79$\\
+~~~~$logg_P$\dotfill &Surface gravity \dotfill &$4.42^{+0.29}_{-0.49}$\\
+~~~~$\Theta$\dotfill &Safronov Number \dotfill &$0.15\pm0.38$\\
+~~~~$\fave$\dotfill &Incident Flux (\fluxcgs)\dotfill &$0.312^{+0.037}_{-0.079}$\\
+~~~~$T_P$\dotfill &Time of Periastron (\bjdtdb)\dotfill &$2456979.96^{+0.53}_{-0.58}$\\
+~~~~$T_S$\dotfill &Time of eclipse (\bjdtdb)\dotfill &$2456980.2^{+3.6}_{-3.7}$\\
+~~~~$T_A$\dotfill &Time of Ascending Node (\bjdtdb)\dotfill &$2456988.46^{+0.98}_{-1.4}$\\
+~~~~$T_D$\dotfill &Time of Descending Node (\bjdtdb)\dotfill &$2456971.40^{+1.4}_{-0.98}$\\
+~~~~$V_c/V_e$\dotfill & \dotfill &$0.714^{+0.12}_{-0.044}$\\
+~~~~$e\cos{\omega_*}$\dotfill & \dotfill &$-0.01^{+0.54}_{-0.57}$\\
+~~~~$e\sin{\omega_*}$\dotfill & \dotfill &$0.18^{+0.15}_{-0.29}$\\
+~~~~$M_P\sin i$\dotfill &Minimum mass (\mj)\dotfill &$0.20\pm0.50$\\
+~~~~$M_P/M_*$\dotfill &Mass ratio \dotfill &$0.00015\pm0.00036$\\
+~~~~$d/R_*$\dotfill &Separation at mid transit \dotfill &$9.1\pm2.2$\\
+~~~~$P_T$\dotfill &A priori non-grazing transit prob \dotfill &$0.109^{+0.035}_{-0.021}$\\
+~~~~$P_{T,G}$\dotfill &A priori transit prob \dotfill &$0.112^{+0.036}_{-0.022}$\\
+~~~~$P_S$\dotfill &A priori non-grazing eclipse prob \dotfill &$0.067^{+0.095}_{-0.014}$\\
+~~~~$P_{S,G}$\dotfill &A priori eclipse prob \dotfill &$0.069^{+0.098}_{-0.015}$\\
+\smallskip\\\multicolumn{2}{l}{Wavelength Parameters:}&Kepler&$4.5\mu m$&TESS\smallskip\\
+~~~~$u_{1}$\dotfill &linear limb-darkening coeff \dotfill &$0.374\pm0.051$&$0.067^{+0.047}_{-0.040}$&$0.260\pm0.036$\\
+~~~~$u_{2}$\dotfill &quadratic limb-darkening coeff \dotfill &$0.306\pm0.050$&$0.141\pm0.050$&$0.303^{+0.036}_{-0.035}$\\
+~~~~$A_D$\dotfill &Dilution from neighboring stars \dotfill &--&--&$-0.127^{+0.087}_{-0.091}$\\
+\smallskip\\\multicolumn{2}{l}{Transit Parameters:}&K2 UT 2014-Sl-im (Kepler)&Spitzer UT 2016-03-01 (Spit45)&TESS UT 2018-Sl-im (TESS)&TESS UT 2020-S2-8. (TESS)\smallskip\\
+~~~~$\sigma^{2}$\dotfill &Added Variance \dotfill &$-0.00000000007^{+0.00000000022}_{-0.00000000018}$&$-0.0000000027^{+0.0000000083}_{-0.0000000077}$&$-0.0000000019^{+0.0000000049}_{-0.0000000046}$&$0.000000076\pm0.000000011$\\
+~~~~$F_0$\dotfill &Baseline flux \dotfill &$0.9999975\pm0.0000041$&$1.000033\pm0.000016$&$1.000013\pm0.000012$&$1.000084\pm0.000012$\\
+\enddata
+\label{tab:K2_167.K2.SED.}
+\tablenotetext{}{See Table 3 in \citet{Eastman:2019} for a detailed description of all parameters}
+\tablenotetext{1}{This value ignores the systematic error and is for reference only}
+\tablenotetext{2}{The metallicity of the star at birth}
+\tablenotetext{3}{Corresponds to static points in a star's evolutionary history. See \S2 in \citet{Dotter:2016}.}
+\tablenotetext{4}{Time of conjunction is commonly reported as the "transit time"}
+\tablenotetext{5}{Time of minimum projected separation is a more correct "transit time"}
+\tablenotetext{6}{Optimal time of conjunction minimizes the covariance between $T_C$ and Period}
+\tablenotetext{7}{Assumes no albedo and perfect redistribution}
+\tablenotetext{8}{Estimated eclipse depth assumes blackbodies}
+\end{deluxetable*}
+\end{document}

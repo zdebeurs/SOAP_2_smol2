@@ -1,0 +1,173 @@
+Doing fit with 10 threads
+Using EXOFASTv2 commit 4359a387ea09118efc4532551df66552c722466a
+The index for each fitted band is
+ 0 Kepler
+ 1 Spit45
+ 2 TESS
+
+Fitting dilution for TESS band
+The index for each transit is
+ 0 n2014Slim.Kepler.K2.K2167.dat
+ 1 n20160301.Spit45.Spitzer.dat
+ 2 n2018Slim.TESS.TESS.K2167.dat
+ 3 n2020S28.TESS.TESS.K2167.dat
+
+These are the priors that will be applied to the fit.
+Those with "no prior constraint" only affect the starting values of the fit:
+
+rstar = 1.4680000 +/- 0.051380000; bounded between -Infinity and Infinity
+NOTE: rstar starts at 1.4546401
+rstarsed = 1.4586147 (no prior constraint); bounded between -Infinity and Infinity
+teff = 6153.0000 +/- 93.000000; bounded between -Infinity and Infinity
+NOTE: teff starts at 6187.3549
+teffsed = 6188.3045 (no prior constraint); bounded between -Infinity and Infinity
+feh = 0.45000000 +/- 0.080000000; bounded between -Infinity and Infinity
+NOTE: feh starts at 0.35033789
+initfeh = 0.35943411 (no prior constraint); bounded between -Infinity and Infinity
+eep = 372.65984 (no prior constraint); bounded between -Infinity and Infinity
+logmstar = 0.10708417 (no prior constraint); bounded between -Infinity and Infinity
+Av = 0.11186441 (no prior constraint); bounded between 0.0000000 and 0.12431000
+errscale = 0.95830394 (no prior constraint); bounded between -Infinity and Infinity
+parallax = 12.414800 +/- 0.078594380; bounded between -Infinity and Infinity
+NOTE: parallax starts at 12.444897
+distance = 80.354221 (no prior constraint); bounded between -Infinity and Infinity
+mp_0 = 0.20000000 +/- 0.50000000; bounded between -Infinity and Infinity
+NOTE: mp_0 starts at 0.60752810
+mpsun_0 = 0.00057994282 (no prior constraint); bounded between -Infinity and Infinity
+tc_0 = 2456979.9 (no prior constraint); bounded between -Infinity and Infinity
+p_0 = 0.013911965 (no prior constraint); bounded between -Infinity and Infinity
+cosi_0 = 0.028122476 (no prior constraint); bounded between -Infinity and Infinity
+logp_0 = 0.99906666 (no prior constraint); bounded between -Infinity and Infinity
+secosw_0 = -0.86190530 (no prior constraint); bounded between -Infinity and Infinity
+sesinw_0 = -0.41983450 (no prior constraint); bounded between -Infinity and Infinity
+u1_0 = 0.41455542 (no prior constraint); bounded between -Infinity and Infinity
+u2_0 = 0.28093213 (no prior constraint); bounded between -Infinity and Infinity
+u1_1 = 0.072789554 (no prior constraint); bounded between -Infinity and Infinity
+u2_1 = 0.12830350 (no prior constraint); bounded between -Infinity and Infinity
+u1_2 = 0.26328529 (no prior constraint); bounded between -Infinity and Infinity
+u2_2 = 0.30664665 (no prior constraint); bounded between -Infinity and Infinity
+dilute_2 = -0.089805381 (no prior constraint); bounded between -Infinity and Infinity
+variance_0 = -1.3369903e-11 (no prior constraint); bounded between -Infinity and Infinity
+f0_0 = 0.99999937 (no prior constraint); bounded between -Infinity and Infinity
+variance_1 = 2.0080593e-11 (no prior constraint); bounded between -Infinity and Infinity
+f0_1 = 1.0000329 (no prior constraint); bounded between -Infinity and Infinity
+variance_2 = 5.5585783e-10 (no prior constraint); bounded between -Infinity and Infinity
+f0_2 = 1.0000081 (no prior constraint); bounded between -Infinity and Infinity
+variance_3 = 6.3633342e-08 (no prior constraint); bounded between -Infinity and Infinity
+f0_3 = 1.0000797 (no prior constraint); bounded between -Infinity and Infinity
+
+Fit will require 1.2244284 GB of RAM for the final structure
+
+MAXSTEPS set to 30000
+NTHIN set to 200
+These are the starting values for all fitted parameters
+and the amoeba stepping scale, which is roughly the range
+of parameter space it will explore around the starting value
+and is equal to 3x any Gaussian width. When priors are not 
+specified in 167.priors.6, a default guess is used.
+The parameter number is useful for tracking down unconstrained
+parameters
+
+**************************************************************
+*** IT IS WISE TO MAKE SURE THESE AGREE WITH YOUR          ***
+*** EXPECTATION FROM THE PRIORFILE. IF NOT, YOUR           ***
+*** STARTING PRIORS MAY NOT BE TRANSLATED CORRECTLY INTO   ***
+*** THE FITTED PARAMETERIZATION BY                         ***
+*** $EXOFAST_PATH/pars2step.pro. NOT ALL PARAMETER         ***
+*** COMBINATIONS ARE ALLOWED/SUPPORTED.                    ***
+*** WHEN IN DOUBT, SET PRIORS/CHANGE STARTING VALUES       ***
+*** DIRECTLY IN THESE FITTED PARAMETERS.                    ***
+**************************************************************
+
+Par #      Par Name    Par Value       Amoeba Scale
+  0           RSTAR       1.454640       0.154140
+  1        RSTARSED       1.458615       0.500000
+  2            TEFF    6187.354903     279.000000
+  3         TEFFSED    6188.304518     500.000000
+  4             FEH       0.350338       0.240000
+  5         INITFEH       0.359434       0.500000
+  6             EEP     372.659835      50.000000
+  7        LOGMSTAR       0.107084       1.000000
+  8              AV       0.111864       0.300000
+  9        ERRSCALE       0.958304      10.000000
+ 10        DISTANCE      80.354221     100.000000
+ 11           MPSUN       0.000580       0.000000
+ 12              TC 2456979.934445       0.100000
+ 13               P       0.013912       0.100000
+ 14            COSI       0.028122       0.068683
+ 15            LOGP       0.999067       0.000127
+ 16          SECOSW      -0.861905       0.100000
+ 17          SESINW      -0.419834       0.100000
+ 18              U1       0.414555       0.150000
+ 19              U2       0.280932       0.150000
+ 20            U1_1       0.072790       0.150000
+ 21            U2_1       0.128304       0.150000
+ 22            U1_2       0.263285       0.150000
+ 23            U2_2       0.306647       0.150000
+ 24        DILUTE_2      -0.089805       0.010000
+ 25        VARIANCE      -0.000000       1.000000
+ 26              F0       0.999999       0.010000
+ 27      VARIANCE_1       0.000000       1.000000
+ 28            F0_1       1.000033       0.010000
+ 29      VARIANCE_2       0.000000       1.000000
+ 30            F0_2       1.000008       0.010000
+ 31      VARIANCE_3       0.000000       1.000000
+ 32            F0_3       1.000080       0.010000
+
+It takes 0.030989885 seconds to calculate a single model
+Beginning AMOEBA fit; this may take up to 51.6 minutes if it takes the maximum allowed steps (100000.00)
+Finished AMOEBA fit
+The best loglike found by AMOEBA was 40927.316
+It should only be compared against the loglike of the same model with different starting points
+Beginning chain initialization
+Done initializing chains
+
+EXOFAST_DEMC: 0.01% done; acceptance rate = 12.94%; tz = 0.00 (>1000); GelmanRubin = 10.0000 (<1.01); time left: 5.44 days    
+EXOFAST_DEMC: 5.00% done; acceptance rate = 3.01%; tz = 1052.58 (>1000); GelmanRubin = 1.0325 (<1.01); time left: 8.07 days    
+EXOFAST_DEMC: The chain is expected to be well-mixed after  5% completed     
+EXOFAST_DEMC: 10.00% done; acceptance rate = 2.94%; tz = 2589.38 (>1000); GelmanRubin = 1.0128 (<1.01); time left: 7.64 days    
+
+
+EXOFAST_DEMC: done in 1.04 days; accepted 2.98% of trial steps
+Synthesizing results; for long chains and/or many fitted parameters, this may take up to 15 minutes
+The best loglike found by MCMC was 40928.909
+It should only be compared against the loglike of the same model with different starting points
+
+Use BIC and AIC to compare different models
+NDATA = 6821
+NFIT = 33
+BIC = -81566.501
+AIC = -81791.818
+WARNING: MCMC found a better model that AMOEBA.
+Using mkprior to refine your starting values and refitting
+may result in a faster and more robust answer.
+Look at the chain plot before you trust this fit.
+
+rstar_0 penalty = 0.057868
+teff_0 penalty = 0.136470
+feh_0 penalty = 1.583259
+Av_0 penalty = 0.000000
+parallax_0 penalty = 0.145130
+mp_0 penalty = 0.664317
+MIST penalty = 1.1776362
+SED penalty = -52.169092
+Kepler u1 penalty = 1.6446077
+Kepler u2 penalty = 0.022609641
+K2 UT 2014-Sl-im (Kepler) transit penalty: -2587.9762 -2.1560020e-10
+$4.5\mu m$ u1 penalty = 0.069044315
+$4.5\mu m$ u2 penalty = 0.0096849322
+Spitzer UT 2016-03-01 (Spit45) transit penalty: -7484.4840 -2.3960454e-10
+TESS u1 penalty = 0.013217724
+TESS u2 penalty = 0.00035044583
+TESS UT 2018-Sl-im (TESS) transit penalty: -11931.125 3.6257560e-10
+TESS u1 penalty = 0.013217724
+TESS u2 penalty = 0.00035044583
+TESS UT 2020-S2-8. (TESS) transit penalty: -59807.601 7.8752515e-08
+1.45564009 1.45961472 6187.35592373 6194.16293075 0.34933791 0.36824665 372.65883904 0.10608424 0.11186441 0.95730469 80.35522842 0.00057994 2456979.93344491 0.01366197 0.02712248 0.99906763 -0.86190529 -0.41983449 0.41355543 0.29130714 0.07178957 0.13399101 0.26228530 0.30664666 -0.08205538 -0.00000000 0.99999937 -0.00000000 1.00003288 0.00000000 1.00000887 0.00000008 1.00007984 33.30587083 40928.90877467
+Warning: NaNs in loggp distribution; NaNs will be ignored in all summaries
+ERROR: NaNs in loggp distribution
+The fit is done and can be interrupted without losing any results
+Now generating a table of the numerically solved times of 
+minimum projected separation, depth, and impact parameters for
+each transit file. This may take a while, but can be done at any
+point with the idl file and exofast_gettt
