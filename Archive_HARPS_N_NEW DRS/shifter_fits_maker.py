@@ -12,39 +12,42 @@ def shifter_fits_maker(bjd, ccfBary, rvh,
                        fwhm,
                        cont,
                        bis,
+                       index_cut_num,
                        path):
 
     df_master = master_shifting(bjd, ccfBary, rvh,
-                                ref_frame_shift=ref_frame_shift,  # "off" or a specific value in km/s
-                                removed_planet_rvs= removed_planet_rvs,  # array of rv values for planet signal in km/s
-                                zero_or_median = zero_or_median,
-                                shift_by_rv= shift_by_rv,
-                                fwhm = fwhm,
-                                cont = cont,
-                                bis = bis)
+                    ref_frame_shift="off", #"off" or a specific value in km/s
+                    removed_planet_rvs= removed_planet_rvs, #array of rv values for planet signal in km/s
+                    zero_or_median = zero_or_median,
+                    p_no = [0.6, 0.0, 2.7, 1.0],
+                    shift_by_rv = shift_by_rv,
+                    fwhm = fwhm,
+                    cont = cont,
+                    bis = bis,
+                    index_cut_num = index_cut_num)
 
     # write it all to one file
     # creates columns in CCF.fits files
     col1 = fits.Column(name='bjd', format='E', array=df_master["BJD"])
 
     # ccf params
-    col2 = fits.Column(name='og_ccf_list', format='161E', dim='(732)',
-                       array=np.array([df_master["og_ccf_list"]]).reshape((732 ,161)))
-    col3 = fits.Column(name='jup_shifted_CCF_data_list' ,format='161E', dim='(732)',
-                       array=np.array([df_master["jup_shifted_CCF_data_list"]]).reshape((732 ,161)))
-    col4 = fits.Column(name='zero_shifted_CCF_list', format='161E',  dim='(732)',
-                       array=np.array([df_master["zero_shifted_CCF_list"]]).reshape((732 ,161)))
-    col5a = fits.Column(name='CCF_normalized_list', format='161E', dim='(161)',
-                       array=np.array([df_master["CCF_normalized_list"]]).reshape((732 ,161)))
-    col5b = fits.Column(name='CCF_normalized_list_cutoff', format='152E', dim='(152)',
-                       array=np.array([df_master["CCF_normalized_list_cutoff"]]).reshape((732, 152)))
+    col2 = fits.Column(name='og_ccf_list', format='528E', dim='(49)',
+                       array=np.array([l.tolist() for l in df_master["og_ccf_list"]]))
+    #col3 = fits.Column(name='jup_shifted_CCF_data_list' ,format='49E', dim='(528)',
+    #                   array=np.array([l.tolist() for l in df_master["jup_shifted_CCF_data_list"]]).reshape((528 ,49)))
+    #col4 = fits.Column(name='zero_shifted_CCF_list', format='49E',  dim='(528)',
+    #                   array=np.array([l.tolist() for l in df_master["zero_shifted_CCF_list"]]).reshape((528 ,49)))
+    #col5a = fits.Column(name='CCF_normalized_list', format='49E', dim='(49)',
+    #                   array=np.array([l.tolist() for l in df_master["CCF_normalized_list"]]).reshape((528 ,49)))
+    #col5b = fits.Column(name='CCF_normalized_list_cutoff', format='47E', dim='(47)',
+    #                   array=np.array([l.tolist() for l in df_master["CCF_normalized_list_cutoff"]]).reshape((528, 47)))
     col6 = fits.Column(name='mu_og_list', format='E', array=df_master["mu_og_list"])
     col7 = fits.Column(name='mu_jup_list', format='E', array=df_master["mu_jup_list"])
     col8 = fits.Column(name='mu_zero_list', format='E', array=df_master["mu_zero_list"])
 
     # rv and textfile params
     col9 = fits.Column(name='vrad_star', format='E', array=df_master["vrad_star"])
-    # col10 = fits.Column(name='vrad_plan_star', format='E', array=df_master["vrad_plan_star"])
+    #col10 = fits.Column(name='vrad_plan_star', format='E', array=df_master["vrad_plan_star"])
     col11 = fits.Column(name='fwhm', format='E', array=df_master["fwhm"])
     col12 = fits.Column(name='cont', format='E', array=df_master["cont"])
     col13 = fits.Column(name='bis_span', format='E', array=df_master["bis"])
@@ -54,7 +57,7 @@ def shifter_fits_maker(bjd, ccfBary, rvh,
 
     # hdu = fits.PrimaryHDU()
     primary_hdu = fits.PrimaryHDU()
-    t = fits.BinTableHDU.from_columns([col2, col3, col4, col5a, col5b])
+    t = fits.BinTableHDU.from_columns([col2])#, col3, col4, col5a, col5b])
     table_hdu2 = fits.BinTableHDU.from_columns([col1, col6, col7, col8,
                                                 col9, col11, col12, col13])
 

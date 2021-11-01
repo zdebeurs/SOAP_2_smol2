@@ -26,8 +26,11 @@ import os
 def master_shifting(bjd, ccfBary, rvh,
                     ref_frame_shift,  # "off" or a specific value in km/s
                     removed_planet_rvs,  # array of rv values for planet signal in km/s OR "NULL"
-                    zero_or_median, shift_by_rv,
-                    fwhm, cont, bis):  # "zero" or "median"
+                    zero_or_median,
+                    p_no,
+                    shift_by_rv,
+                    fwhm, cont, bis,
+                    index_cut_num):  # "zero" or "median"
     number_of_ccfs = len(ccfBary)
 
     # HARPS direct data lists
@@ -76,8 +79,8 @@ def master_shifting(bjd, ccfBary, rvh,
                    {'fixed': False, 'step': 1e-9}]
 
         # no_shift fit
-        rv_data = np.linspace(-20, 20, 161)
-        p_no_shifted = [1., 0.1, 1., 0.5]
+        rv_data = np.linspace(-20, 20, len(ccfBary[0]))
+        p_no_shifted = p_no
         pfit_no_shift, results_no_shift = mpyfit.fit(least, p_no_shifted, (rv_data, CCF_data), parinfo)
         mu_og = pfit_no_shift[1]
         mu_og_list.append(mu_og)
@@ -248,7 +251,7 @@ def master_shifting(bjd, ccfBary, rvh,
 
         # clip off 1km/s on each side
         # find indexes of where to cutoff
-        index_cutoff = np.where(abs(rv_data) == 19)
+        index_cutoff = np.where(abs(abs(rv_data)-index_cut_num) < 0.01)
         ccf_norm_np = np.array(list(CCF_normalized_list))
         ccf_norm_transpose_np = ccf_norm_np.transpose()
         # clip edges and take the transpose again
