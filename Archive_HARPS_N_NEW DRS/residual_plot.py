@@ -45,7 +45,9 @@ def residual_plot(rv_list, x_axis, ccfs_of_interest, num_ref_ccf, plot_title):
     cmap = mpl.cm.bwr
     norm = mpl.colors.Normalize(vmin=(min_rv - np.median(rv_list)), vmax=(max_rv - np.median(rv_list)))
     cb = plt.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap), orientation="vertical", pad=-0.0001)
-    cb.set_label(label='Stellar Activity Signal (m/s)', size=16, rotation=270, labelpad=20)
+    cb.set_label(label='Stellar Activity Signal (m/s)', size=20, rotation=270, labelpad=20)
+    plt.xlabel("RV in km/s", size=23)
+    plt.ylabel("Residuals ($\Delta$CCF)", size=23)
 
 
 if __name__ == '__main__':
